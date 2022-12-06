@@ -1,3 +1,6 @@
 <template lang="pug">
-div hello
+.container
+    PageList(title="最新消息")
 </template>
+
+<style lang="sass" scoped></style>

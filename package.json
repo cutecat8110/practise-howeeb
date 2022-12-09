@@ -15,10 +15,15 @@
     "eslint-plugin-vue": "^9.8.0",
     "node-sass": "^8.0.0",
     "nuxt": "3.0.0",
+    "nuxt-icon": "^0.1.7",
     "prettier": "^2.8.0",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "swiper": "^8.4.5"
   }
 }

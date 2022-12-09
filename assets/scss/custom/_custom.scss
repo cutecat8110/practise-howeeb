@@ -1,0 +1,75 @@
+body {
+    font-family: "PingFang";
+}
+
+ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.125rem;
+}
+
+p {
+    margin: 0;
+}
+
+button {
+    overflow: visible;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    /* Corrects font smoothing for webkit */
+
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    &::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.c_btn {
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;
+    color: initial;
+    cursor: pointer;
+    transition: $transition-1;
+
+    user-select: none;
+    &:disabled {
+        pointer-events: none;
+    }
+    &:hover {
+        color: inherit;
+    }
+}

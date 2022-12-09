@@ -1,5 +1,5 @@
-<template lang="pug">
-div 這裡是{{name}}
+<template>
+  <div>這裡是{{ name }}</div>
 </template>
 
 <script setup>

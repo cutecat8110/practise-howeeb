@@ -1,6 +1,4 @@
-<template lang="pug">
-.container
-    PageList(title="最新消息")
+<template>
+  <div class="container">
+  </div>
 </template>
-
-<style lang="sass" scoped></style>

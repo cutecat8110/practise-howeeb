@@ -1,0 +1,40 @@
+$gray-1: #222222;
+$gray-2: #757575;
+$gray-3: #bebebe;
+$gray-4: #dcd9d8;
+$gray-5: #f6f6f6;
+
+$gray-o-1: rgba(0, 0, 0, 0.4);
+$gray-o-2: rgba(221, 217, 216, 0.5);
+$gray-o-3: rgba(221, 217, 216, 0.3);
+$gray-o-4: rgba(221, 217, 216, 0.12);
+
+$white: #ffffff;
+$white-o-1: rgba(255, 255, 255, 0.5);
+
+$yeollow-1: #ce9c11;
+$yeollow-2: #f9ba0d;
+$yeollow-3: #fff0c8;
+
+$blue-1: #3975ea;
+
+$green-1: #5ac463;
+
+$red-1: #e72626;
+
+// 過度
+$transition-1: all 0.1s ease-in-out;
+$transition-2: all 0.2s ease-in-out;
+$transition-3: all 0.3s ease-in-out;
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin pad {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}

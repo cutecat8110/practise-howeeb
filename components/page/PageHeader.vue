@@ -1,20 +1,37 @@
-<template lang="pug">
-header
-    nav.navbar.navbar-expand-xl.p-0
-        .container-md
-            NuxtLink.navbar-brand(to='/')
-                img(src='/img/logo.png' alt="LOGO")
-            button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-                span.navbar-toggler-icon
-            #navbarNav.collapse.navbar-collapse
-                ul.navbar-nav.ms-auto
-                    li(v-for="(link,index) in navbar" :key="`navbar-link-${index}`")
-                        NuxtLink.c_btn.page-nav-link.p-2(:to='link.path') {{link.name}}
-                    li
-                        .search-wrapper.c_btn.p-2
-                                Icon(name="fa:search")
-                    li
-                        .c_btn.contact.p-3 聯絡我們
+<template>
+  <header>
+    <nav class="navbar navbar-expand-xl p-0">
+      <div class="container-md">
+        <NuxtLink class="navbar-brand" to="/"><img src="/img/logo.png" alt="logo" /></NuxtLink
+        ><button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li v-for="(link, index) in navbar" :key="`navbar-link-${index}`">
+              <NuxtLink class="c_btn page-nav-link p-2" :to="link.path">{{ link.name }}</NuxtLink>
+            </li>
+            <li>
+              <div class="search-wrapper c_btn p-2">
+                <Icon name="fa:search"></Icon>
+              </div>
+            </li>
+            <li>
+              <div class="c_btn contact p-3">聯絡我們</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <script setup>
@@ -50,37 +67,43 @@ const navbar = ref([
 ])
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+header {
+  border-bottom: $gray-4 1px solid;
+}
+.navbar-nav {
+  align-items: center;
+  gap: 1rem;
+  @include mobile {
+    gap: 0;
+  }
+}
+.c_btn {
+  color: $gray-2;
 
-header
-    border-bottom: $gray-gainsboro 1px solid
-.navbar-nav
-    align-items: center
-    gap: 1rem
-    @include mobile
-        gap: 0
-.c_btn
-    color: $gray-750
+  &.router-link-active,
+  &:hover {
+    font-weight: 500;
+    color: $yeollow-1;
+  }
+}
 
-    &.router-link-active,
-    &:hover
-        font-weight: 500
-        color: $color-main
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
 
-.search-wrapper
-    display: flex
-    align-items: center
+.contact {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background: $yeollow-1;
+  color: #ffffff;
 
-.contact
-    display: flex
-    align-items: center
-    height: 60px
-    background: $color-main
-    color: #FFFFFF
-
-    &:hover
-        background: $yeollow-mango
-        font-weight: 500
-        color: #FFFFFF
-        
+  &:hover {
+    background: $yeollow-2;
+    font-weight: 500;
+    color: #ffffff;
+  }
+}
 </style>

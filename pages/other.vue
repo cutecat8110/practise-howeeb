@@ -1,6 +1,5 @@
-<template lang="pug">
-div 
-    PageListTest
+<template>
+  <div>這裡是{{ name }}</div>
 </template>
 
 <script setup>

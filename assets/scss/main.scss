@@ -1,7 +1,8 @@
-@import '~/node_modules/bootstrap/scss/functions';
-@import './helpers/_variables';
-@import '~/node_modules/bootstrap/scss/bootstrap';
+// bootstrap
+@import "~/node_modules/bootstrap/scss/functions";
+@import "./helpers/_variables";
+@import "~/node_modules/bootstrap/scss/bootstrap";
 
-@import './custom/variables';
+@import "./custom/variables";
 @import "./custom/font";
-@import './custom/custom';
+@import "./custom/custom";

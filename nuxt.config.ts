@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   vite: {
     css: {
       preprocessorOptions: {
-        sass: {
-          additionalData: `@import "assets/scss/custom/_variables.sass"`
+        scss: {
+          additionalData: `@import "assets/scss/custom/_variables.scss";`
         }
       }
     }
@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       src: '@/plugins/bootstrap.client.js',
       ssr: false
     },
+    {
+      src: '@/plugins/swiper.client.js',
+      ssr: false
+    }
   ],
   css: ['~/assets/scss/main.scss']
 })

@@ -1,0 +1,1 @@
+import{s as o,o as s,l as a,t as n,u as r}from"./entry.24cd6c81.js";const p={__name:"other",setup(c){const e=o(),{name:t}=e;return(u,l)=>(s(),a("div",null,"\u9019\u88E1\u662F"+n(r(t)),1))}};export{p as default};

@@ -56,7 +56,7 @@ const pagination = {
   -webkit-justify-content: center;
   justify-content: center;
   height: calc((100% - 30px) / 2) !important;
-  background: #ffffff;
+  background: $white;
   text-align: center;
   font-size: 18px;
 }
@@ -81,6 +81,6 @@ const pagination = {
 
 .swiper-pagination-bullet-active {
   background: #007aff;
-  color: #ffffff;
+  color: $white;
 }
 </style>

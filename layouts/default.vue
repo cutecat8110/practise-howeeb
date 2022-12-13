@@ -1,8 +1,9 @@
 <template lang="pug">
 .layout_root
-    PageHeader
+    header
+        PageHeader
+        PageBanner
     main
-        //- PageBanner
         slot
     PageFooter
 </template>

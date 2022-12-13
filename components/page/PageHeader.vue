@@ -1,10 +1,12 @@
 <template>
-  <header>
+  <div class="header_root">
     <nav class="navbar navbar-expand-xl fixed-top p-0">
-      <div class="container-md">
+      <div class="container-xl">
         <div class="navbar_content \">
-          <div class="container-md">
-            <NuxtLink class="navbar-brand" to="/"><img src="/img/logo.png" alt="logo" /></NuxtLink>
+          <div class="container-xl">
+            <NuxtLink class="navbar-brand" to="/"
+              ><img class="logo" src="/img/logo.png" alt="logo"
+            /></NuxtLink>
             <div class="navbar-toggler">
               <NuxtLink class="c_btn" to="/contact">聯絡我們</NuxtLink>
               <button
@@ -32,7 +34,7 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav ms-auto">
               <li class="d-block d-xl-none">
-                <div class="c_btn p-2">搜尋</div>
+                <button @click="modalShow" type="button" class="c_btn p-2">搜尋</button>
               </li>
               <li v-for="(link, index) in navbar" :key="`navbar-link-${index}`">
                 <NuxtLink class="c_btn page-nav-link p-2" :to="link.path">{{ link.name }}</NuxtLink>
@@ -50,7 +52,30 @@
         </div>
       </div>
     </nav>
-  </header>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -85,13 +110,23 @@ const navbar = ref([
   }
 ])
 
+const { $bootstrap } = useNuxtApp()
+
+/* 搜尋 */
+let myModal = ref(null)
+onMounted(() => {
+  const searchModal = document.getElementById('exampleModal')
+  myModal = new $bootstrap.Modal(searchModal)
+})
+const modalShow = () => {
+  myModal.show()
+}
+
 /* 關閉選單 */
 const rotate = useRoute()
-const { $bootstrap } = useNuxtApp()
 const active = ref('')
 onMounted(() => {
   const navList = document.getElementById('offcanvasNavbar')
-
   const bsOffcanvas = new $bootstrap.Offcanvas(navList)
   watch(rotate, () => {
     bsOffcanvas.hide()
@@ -105,18 +140,6 @@ onMounted(() => {
     active.value = 'is-active'
   })
 })
-
-// const resizeWindow = () => {
-//   if (document.body.offsetWidth > 1200 && active.value) {
-//     active.value = ''
-//   }
-// }
-// onMounted(() => {
-//   window.addEventListener('resize', resizeWindow)
-// })
-// onUnmounted(() => {
-//   window.removeEventListener('resize', resizeWindow)
-// })
 </script>
 
 <style lang="scss" scoped>
@@ -125,6 +148,12 @@ onMounted(() => {
     background: $white;
     @include pad {
         border-bottom: 0;
+    }
+}
+
+.logo {
+    @include mobile {
+        width: 6rem;
     }
 }
 
@@ -139,9 +168,16 @@ onMounted(() => {
         border-bottom: $gray-4 1px solid;
         background: $white;
 
-        .container-md {
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-xl {
             display: flex;
             justify-content: space-between;
+            height: 100%;
         }
     }
 }
@@ -194,6 +230,10 @@ onMounted(() => {
         border-radius: 2px;
         background-color: $gray-2;
         transition: $transition-1, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        @include mobile {
+            width: 20px;
+            margin: 4px auto;
+        }
     }
 
     .is-active .line:nth-child(2) {
@@ -202,10 +242,16 @@ onMounted(() => {
 
     .is-active .line:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
+        @include mobile {
+            transform: translateY(6px) rotate(45deg);
+        }
     }
 
     .is-active .line:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
+        @include mobile {
+            transform: translateY(-6px) rotate(-45deg);
+        }
     }
 }
 
@@ -262,4 +308,5 @@ onMounted(() => {
         }
     }
 }
+
 </style>

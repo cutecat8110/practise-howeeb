@@ -111,7 +111,7 @@ footer {
     grid-template-columns: repeat(4, auto);
     gap: 2.5rem;
     @include pad {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, auto);
     }
     @include mobile {
         gap: 0.75rem 1.25rem;

@@ -2,7 +2,7 @@
 .layout_root
     PageHeader
     main
-        PageBanner
+        //- PageBanner
         slot
     PageFooter
 </template>
@@ -13,6 +13,7 @@
     display: flex
     flex-direction: column
     min-height: 100vh
+    padding-top: 3.75rem
 
     main
         flex: 1

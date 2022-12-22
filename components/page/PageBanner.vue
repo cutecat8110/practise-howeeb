@@ -1,9 +1,11 @@
 <template>
-  <div class="banner_root">
+  <div v-if="finishRender" class="banner_root">
     <div class="container-xl">
-      <swiper
+      <!-- <swiper
         :loop="true"
+        :autoplay="autoplay"
         :spaceBetween="30"
+        :effect="'fade'"
         :pagination="pagination"
         :navigation="navigation"
         :modules="modules"
@@ -11,42 +13,72 @@
       >
         <swiper-slide v-for="banner in bannerData" :key="banner.id">
           <img :src="banner.download_url" alt="" />
-          <h1 class="slogan">不給糖，就導彈！</h1>
+          <h1 class="slogan">{{ `小男孩x不給糖就搗蛋 TωT` }}</h1>
         </swiper-slide>
-        <button type="button" class="c_btn next d-xl-block d-none">
-          <Icon name="bi:chevron-right"></Icon>
+        <button type="button" class="c_btn prev">
+          <Icon name="fa6-solid:chevron-left"></Icon>
         </button>
-        <button type="button" class="c_btn prev d-xl-block d-none">
-          <Icon name="bi:chevron-left"></Icon>
+        <button type="button" class="c_btn next">
+          <Icon name="fa6-solid:chevron-right"></Icon>
         </button>
-      </swiper>
+      </swiper> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination } from 'swiper'
-const modules = [Navigation, Pagination]
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper'
+const modules = [Autoplay, EffectFade, Navigation, Pagination]
 
 const pagination = {
   clickable: true
 }
-
 const navigation = {
   nextEl: '.next',
   prevEl: '.prev'
 }
+const autoplay = {
+  delay: 4500,
+  disableOnInteraction: false
+}
 
-const {
-  data: bannerData,
-  pending,
-  error,
-  refresh
-} = await useFetch('https://picsum.photos/v2/list?page=3&limit=5')
+// const {
+//   data: bannerData,
+//   pending,
+//   error,
+//   refresh
+// } = await useFetch('https://picsum.photos/v2/list?page=3&limit=5')
+
+// const res = await $fetch('https://farm.yinunite.com/api/banner/list', {
+//   method: 'POST',
+//   mode: 'no-cors',
+//   redirect: 'follow',
+//   referrer: 'no-referrer'
+// }).catch((error) => {
+//   console.log('error', error)
+// })
+
+// const {
+//   data: bannerData,
+//   pending,
+//   error,
+//   refresh
+// } = await useFetch('https://farm.yinunite.com/api/banner/list', {
+//   method: 'POST',
+//   mode: 'no-cors'
+// })
+
+console.log('data', bannerData)
+console.log('error', error)
+
+const finishRender = ref(false)
+onMounted(() => {
+  finishRender.value = true
+})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .banner_root {
   background: $gray-5;
   .container-xl {
@@ -58,13 +90,11 @@ const {
 
 .swiper {
   width: 100%;
-  height: 540px;
-  @include pad {
-    height: 300px;
-  }
   @include mobile {
-    height: 156px;
+    aspect-ratio: 4 / 3;
   }
+
+  aspect-ratio: 21 / 9;
 }
 
 .swiper-slide img {
@@ -82,11 +112,11 @@ const {
   width: 100%;
   padding: 0 6rem;
   letter-spacing: 0.2em;
-  color: $yeollow-1;
+  color: $yellow-1;
   transform: translateY(-50%);
   @include mobile {
-    font-size: 1rem;
     padding: 0 0.75rem;
+    font-size: 1rem;
   }
 }
 
@@ -106,6 +136,14 @@ const {
   font-size: 1.5rem;
   color: $gray-1;
   transform: translateY(-50%);
+  @include mobile {
+    display: none;
+  }
+  &:hover {
+    border-color: transparent;
+    background: $gray-o-1;
+    color: $white-1;
+  }
 }
 .next {
   right: 0.75rem;
@@ -114,11 +152,12 @@ const {
   left: 0.75rem;
 }
 
-.swiper-pagination-bullet {
+:deep(.swiper-pagination-bullet) {
   width: 0.875rem;
   height: 0.875rem;
   margin: 0 0.75rem;
-  background: $gray-4;
+  border: 1px solid $gray-o-2;
+  background: $gray-o-2;
   text-align: center;
   opacity: 1;
   @include mobile {
@@ -128,7 +167,8 @@ const {
   }
 }
 
-.swiper-pagination-bullet-active {
+:deep(.swiper-pagination-bullet-active) {
+  border-color: transparent;
   background: $gray-1;
 }
 </style>

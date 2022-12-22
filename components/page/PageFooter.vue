@@ -58,120 +58,126 @@ const links = ref([
 
 <style lang="scss" scoped>
 footer {
-    background: $gray-5;
+  background: $gray-5;
 }
 .footer_top {
-    border-bottom: 1px solid $gray-4;
+  border-bottom: 1px solid $gray-4;
 
-    .container-md {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 2.5rem;
-        padding-top: 3.75rem;
-        padding-bottom: 3.75rem;
-        @include mobile {
-            gap: 0.75rem;
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
-        }
-    }
-}
-
-.info-title {
+  .container-md {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
-    font-size: 2rem;
-    @include pad {
-        font-size: 1.5rem;
+    gap: 2.5rem;
+    padding-top: 3.75rem;
+    padding-bottom: 3.75rem;
+    @include mobile {
+      gap: 0.75rem;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+  }
+}
+
+.info-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  @include pad {
+    font-size: 1.5rem;
+  }
+  @include mobile {
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .line {
+    width: 5.25rem;
+    height: 3px;
+    background: #000000;
+    @include mobile {
+      width: 3.75rem;
     }
     @include mobile {
-        gap: 0.5rem;
-        font-size: 1rem;
+      width: 2.625rem;
+      height: 2px;
     }
-
-    .line {
-        width: 5.25rem;
-        height: 3px;
-        background: #000000;
-        @include mobile {
-            width: 3.75rem;
-        }
-        @include mobile {
-            width: 2.625rem;
-            height: 1.5px;
-        }
-    }
+  }
 }
 
 .info_wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 2.5rem;
-    @include pad {
-        grid-template-columns: repeat(2, auto);
-    }
-    @include mobile {
-        gap: 0.75rem 1.25rem;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2.5rem;
+  @include pad {
+    grid-template-columns: repeat(2, auto);
+  }
+  @include mobile {
+    gap: 0.75rem 1.25rem;
+  }
 }
 .c_btn {
-    padding: 0.25rem;
+  padding: 0.25rem;
 }
 .info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    @include mobile {
-        gap: 0.5rem;
-        font-size: 0.75rem;
-    }
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  @include mobile {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
 }
 .img_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background: $gray-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: $gray-1;
+
+
+
+
 }
 .footer_bottom {
-    display: flex;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    @include pad {
-        align-items: center;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    @include mobile {
-        gap: 0.75rem;
-        padding-top: 1.25rem;
-        padding-bottom: 1.25rem;
-        font-size: 0.75rem;
-    }
+  display: flex;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  @include pad {
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  @include mobile {
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    font-size: 0.75rem;
+  }
 }
 .logo_wrapper {
-    display: flex;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .map {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    justify-content: center;
-    gap: 2rem;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .copy {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    flex-direction: row-reverse;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: row-reverse;
 }
 </style>

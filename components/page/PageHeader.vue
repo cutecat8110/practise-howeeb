@@ -40,41 +40,19 @@
                 <NuxtLink class="c_btn page-nav-link p-2" :to="link.path">{{ link.name }}</NuxtLink>
               </li>
               <li class="d-none d-xl-block">
-                <div class="search-wrapper c_btn p-2">
+                <button @click="modalShow" type="button" class="search-wrapper c_btn p-2 c_btn p-2">
                   <Icon name="fa:search"></Icon>
-                </div>
+                </button>
               </li>
               <li class="d-none d-xl-block">
-                <NuxtLink class="c_btn contact p-3" to="/contact">聯絡我們</NuxtLink>
+                <NuxtLink class="c_btn contact" to="/contact">聯絡我們</NuxtLink>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">...</div>
-        </div>
-      </div>
-    </div>
+    <PageSearchModal></PageSearchModal>
   </div>
 </template>
 
@@ -101,13 +79,14 @@ const navbar = ref([
     path: '/co-work'
   },
   {
+    name: '工商登記',
+    path: '/business'
+  },
+  {
     name: '其他項目',
     path: '/other'
   },
-  {
-    name: '工商登記',
-    path: '/business'
-  }
+
 ])
 
 const { $bootstrap } = useNuxtApp()
@@ -133,180 +112,144 @@ onMounted(() => {
   })
 
   /* 漢堡條動畫 */
-  navList.addEventListener('hide.bs.offcanvas', function () {
+  navList.addEventListener('hide.bs.offcanvas', () => {
     active.value = ''
   })
-  navList.addEventListener('show.bs.offcanvas', function () {
+  navList.addEventListener('show.bs.offcanvas', () => {
     active.value = 'is-active'
   })
 })
 </script>
 
 <style lang="scss" scoped>
+.header_root {
+  width: 100vw;
+}
+:deep(.offcanvas-backdrop) {
+  opacity: 0.5;
+}
 .navbar {
-    border-bottom: $gray-4 1px solid;
-    background: $white;
-    @include pad {
-        border-bottom: 0;
-    }
+  border-bottom: $gray-4 1px solid;
+  background: $white-1;
+  @include pad {
+    border-bottom: 0;
+  }
 }
 
 .logo {
-    @include mobile {
-        width: 6rem;
-    }
+  @include mobile {
+    width: 6rem;
+  }
 }
 
 .navbar_content {
-    @include pad {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1050;
-        width: 100%;
-        height: 3.75rem;
-        border-bottom: $gray-4 1px solid;
-        background: $white;
+  @include pad {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 3.75rem;
+    border-bottom: $gray-4 1px solid;
+    background: $white-1;
 
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container-xl {
-            display: flex;
-            justify-content: space-between;
-            height: 100%;
-        }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .container-xl {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+    }
+  }
 }
 
 .navbar-toggler {
-    @include pad {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0;
-        border: 0;
-    }
-    @include mobile {
-        gap: 0.5rem;
-    }
-
-    .c_btn {
-        padding: 0.5rem 1.25rem;
-        border: 1px solid $yeollow-1;
-        border-radius: 50rem;
-        font-size: 1rem;
-        color: $yeollow-1;
-        @include mobile {
-            font-size: 0.75rem;
-        }
-
-        &.router-link-active,
-        &:hover {
-            background: $yeollow-1;
-            color: $white;
-        }
-    }
-}
-
-.hamburger_wrapper {
+  @include pad {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+    gap: 1rem;
+    padding: 0;
+    border: 0;
+  }
+  @include mobile {
+    gap: 0.5rem;
+  }
 
-    &:hover .line {
-        background-color: $yeollow-1;
-    }
-    .line {
-        display: block;
-        width: 24px;
-        height: 2px;
-        margin: 6px auto;
-        border-radius: 2px;
-        background-color: $gray-2;
-        transition: $transition-1, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        @include mobile {
-            width: 20px;
-            margin: 4px auto;
-        }
+  .c_btn {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid $yellow-1;
+    border-radius: 50rem;
+    font-size: 1rem;
+    color: $yellow-1;
+    @include mobile {
+      font-size: 0.75rem;
     }
 
-    .is-active .line:nth-child(2) {
-        opacity: 0;
+    &.router-link-active,
+    &:hover {
+      background: $yellow-1;
+      color: $white-1;
     }
-
-    .is-active .line:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-        @include mobile {
-            transform: translateY(6px) rotate(45deg);
-        }
-    }
-
-    .is-active .line:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-        @include mobile {
-            transform: translateY(-6px) rotate(-45deg);
-        }
-    }
+  }
 }
 
 .offcanvas {
-    top: 3.75rem;
-    height: fit-content;
+  top: 3.75rem;
+  height: fit-content;
 }
 
 .navbar-nav {
+  align-items: center;
+  gap: 1rem;
+  @include pad {
+    align-items: stretch;
+  }
+  @include mobile {
+    gap: 0;
+  }
+
+  .search-wrapper {
+    display: flex;
     align-items: center;
-    gap: 1rem;
+  }
+  .c_btn {
+    color: $gray-2;
+
+    &.router-link-active,
+    &:hover {
+      font-weight: 500;
+      color: $yellow-1;
+    }
+  }
+
+  .contact {
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(3.75rem - 1px);
+    background: $yellow-1;
+    color: $white-1;
+
+    &.router-link-active,
+    &:hover {
+      background: $yellow-2;
+      font-weight: 500;
+      color: $white-1;
+    }
+  }
+
+  li {
     @include pad {
-        align-items: stretch;
+      border-bottom: 1px solid $gray-5;
     }
     @include mobile {
-        gap: 0;
+      font-size: 0.75rem;
     }
-
-    .search-wrapper {
-        display: flex;
-        align-items: center;
-    }
-    .c_btn {
-        color: $gray-2;
-
-        &.router-link-active,
-        &:hover {
-            font-weight: 500;
-            color: $yeollow-1;
-        }
-    }
-
-    .contact {
-        display: flex;
-        align-items: center;
-        height: calc(3.75rem - 1px);
-        background: $yeollow-1;
-        color: $white;
-
-        &.router-link-active,
-        &:hover {
-            background: $yeollow-2;
-            font-weight: 500;
-            color: $white;
-        }
-    }
-
-    li {
-        @include pad {
-            border-bottom: 1px solid $gray-5;
-        }
-        @include mobile {
-            font-size: 0.75rem;
-        }
-    }
+  }
 }
-
 </style>

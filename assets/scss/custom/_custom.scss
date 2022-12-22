@@ -1,11 +1,13 @@
 body {
-    font-family: "PingFang";
+  font-family: 'PingFang';
+  color: $gray-1;
 }
 
-ul {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
+ul,
+ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
 h1,
@@ -13,63 +15,106 @@ h2,
 h3,
 h4,
 h5 {
-    margin: 0;
+  margin: 0;
 }
 
 h1 {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 h3 {
-    font-size: 1.125rem;
+  font-size: 1.125rem;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 button {
-    overflow: visible;
-    width: auto;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    font: inherit;
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
-    /* inherit font & color from ancestor */
-    color: inherit;
-    /* Corrects font smoothing for webkit */
+  overflow: visible;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  /* Corrects font smoothing for webkit */
 
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-    &::-moz-focus-inner {
-        padding: 0;
-        border: 0;
-    }
-    &:focus-visible {
-        outline: none;
-    }
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .c_btn {
-    display: block;
-    text-decoration: none;
-    white-space: nowrap;
-    color: initial;
-    cursor: pointer;
-    transition: $transition-1;
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  color: initial;
+  cursor: pointer;
+  transition: $transition-1;
 
-    user-select: none;
-    &:disabled {
-        pointer-events: none;
+  user-select: none;
+  &:disabled {
+    pointer-events: none;
+  }
+  &:hover {
+    color: inherit;
+  }
+}
+
+.hamburger_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  &:hover .line {
+    background-color: $yellow-1;
+  }
+  .line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 6px auto;
+    border-radius: 2px;
+    background-color: $gray-2;
+    transition: $transition-1, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    @include mobile {
+      width: 20px;
+      margin: 4px auto;
     }
-    &:hover {
-        color: inherit;
+  }
+
+  .is-active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .is-active .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    @include mobile {
+      transform: translateY(6px) rotate(45deg);
     }
+  }
+
+  .is-active .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    @include mobile {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
 }

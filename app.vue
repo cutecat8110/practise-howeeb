@@ -3,3 +3,9 @@
   NuxtLayout
     NuxtPage
 </template>
+
+<script setup>
+// onMounted(() => {
+//   useNuxtApp().$loading.show()
+// })
+</script>

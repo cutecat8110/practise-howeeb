@@ -7,7 +7,7 @@ export default defineNuxtConfig({
           additionalData: `@import "assets/scss/custom/_variables.scss";`
         }
       }
-    }
+    },
   },
   modules: ['nuxt-icon'],
   plugins: [
@@ -18,7 +18,15 @@ export default defineNuxtConfig({
     {
       src: '@/plugins/swiper.client.js',
       ssr: false
+    },
+    {
+      src: '@/plugins/loading.client.js',
+      ssr: false
+    },
+    {
+      src: '@/plugins/i18n.js',
+      ssr: false
     }
   ],
-  css: ['~/assets/scss/main.scss']
+  css: ['~/assets/scss/main.scss'],
 })

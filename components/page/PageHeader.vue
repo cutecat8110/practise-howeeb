@@ -4,11 +4,11 @@
       <div class="container-xl">
         <div class="navbar_content \">
           <div class="container-xl">
-            <NuxtLink class="navbar-brand" to="/"
-              ><img class="logo" src="/img/logo.png" alt="logo"
-            /></NuxtLink>
+            <NuxtLink class="navbar-brand" to="/">
+              <img class="logo" src="/img/logo.png" alt="logo" />
+            </NuxtLink>
             <div class="navbar-toggler">
-              <NuxtLink class="c_btn" to="/contact">聯絡我們</NuxtLink>
+              <NuxtLink class="c_btn" to="/contact">{{ $t('contact') }}</NuxtLink>
               <button
                 class="hamburger_wrapper"
                 type="button"
@@ -45,7 +45,7 @@
                 </button>
               </li>
               <li class="d-none d-xl-block">
-                <NuxtLink class="c_btn contact" to="/contact">聯絡我們</NuxtLink>
+                <NuxtLink class="c_btn contact" to="/contact">{{ $t('contact') }}</NuxtLink>
               </li>
             </ul>
           </div>
@@ -60,7 +60,7 @@
 const navbar = ref([
   {
     name: '最新消息',
-    path: '/news'
+    path: '/category/news'
   },
   {
     name: '關於我們',
@@ -68,25 +68,24 @@ const navbar = ref([
   },
   {
     name: '創業相關',
-    path: '/start-up'
+    path: '/category/start-up'
   },
   {
     name: '借址登記',
-    path: '/register'
+    path: '/category/register'
   },
   {
     name: '共享空間',
-    path: '/co-work'
+    path: '/category/co-work'
   },
   {
     name: '工商登記',
-    path: '/business'
+    path: '/category/business'
   },
   {
     name: '其他項目',
-    path: '/other'
-  },
-
+    path: '/category/other'
+  }
 ])
 
 const { $bootstrap } = useNuxtApp()

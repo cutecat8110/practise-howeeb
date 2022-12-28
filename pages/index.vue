@@ -10,6 +10,9 @@
       :title="categoryLast.article_category_name"
       :categoryId="categoryLast.article_category_id"
     />
+    <div class="more_wrapper">
+      <div class="c_btn more">查看更多文章</div>
+    </div>
   </div>
 </template>
 
@@ -44,3 +47,34 @@ const categoryLast = {
   article_category_name: '其他項目'
 }
 </script>
+
+<style lang="scss" scoped>
+.more_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 3.25rem 0;
+  @include mobile {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 3rem;
+    border: 1px solid $yellow-1;
+    border-radius: 50rem;
+    font-size: 1.125rem;
+    color: $yellow-1;
+    @include mobile {
+      font-size: 0.75rem;
+    }
+    &:hover {
+      background: $yellow-1;
+      color: $white-1;
+    }
+  }
+}
+</style>

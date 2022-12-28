@@ -1,1 +1,0 @@
-import{s,o,l as r,t as a,u as n}from"./entry.24cd6c81.js";const p={__name:"register",setup(c){const e=s(),{name:t}=e;return(u,l)=>(o(),r("div",null,"\u9019\u88E1\u662F"+a(n(t)),1))}};export{p as default};

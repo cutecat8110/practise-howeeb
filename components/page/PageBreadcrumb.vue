@@ -9,7 +9,7 @@
           <li class="link_wrapper" aria-current="page">
             <Icon name="fa6-solid:chevron-right" class="icon"></Icon>
             <div to="/" class="c_btn">
-              {{ $t(route.name) }}
+              {{ $t(stories) }}
             </div>
           </li>
         </template>
@@ -20,9 +20,18 @@
 
 <script setup>
 const route = useRoute()
+
 const stories = computed(() => {
-  if (route.name !== 'stories-id') return true
-  return false
+  switch (route.name) {
+    case 'slug':
+      return '404'
+    case 'stories-id':
+      return ''
+    case 'category-id':
+      return route.params.id
+    default:
+      return route.name
+  }
 })
 </script>
 
@@ -45,5 +54,8 @@ ol,
 .c_btn {
   font-size: 1.125rem;
   color: $gray-2;
+  @include mobile {
+    font-size: 0.875rem;
+  }
 }
 </style>

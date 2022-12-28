@@ -1,5 +1,5 @@
 <template>
-  <div class="page_scroll_top_root">
+  <div ref="pageScrollTop" class="page_scroll_top_root">
     <div class="container-xl">
       <Transition>
         <button v-if="hide" type="button" class="c_btn" @click="scrollTop">
@@ -7,11 +7,14 @@
         </button>
       </Transition>
     </div>
+    <PagePrivacy></PagePrivacy>
   </div>
 </template>
 
 <script setup>
+
 const hide = ref(false)
+const pageScrollTop = ref(null)
 
 const onScroll = () => {
   if (scrollY > innerHeight / 3) {
@@ -20,6 +23,7 @@ const onScroll = () => {
     hide.value = false
   }
 }
+
 onMounted(() => {
   addEventListener('scroll', onScroll)
 })
@@ -36,18 +40,21 @@ const scrollTop = () => {
 <style lang="scss" scoped>
 .page_scroll_top_root {
   position: fixed;
-  bottom: 1.75rem;
+  bottom: 0;
   left: 0;
   z-index: 1030;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   pointer-events: none;
-  @include pad {
-    bottom: 1rem;
-  }
 }
 .container-xl {
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 1.75rem;
+  @include pad {
+    margin-bottom: 1rem;
+  }
 }
 
 .c_btn {
@@ -56,9 +63,9 @@ const scrollTop = () => {
   margin-right: -1.75rem;
   border-radius: 50%;
   background: $gray-o-1;
+  font-size: 1.5rem;
   color: $white-1;
   pointer-events: auto;
-  font-size: 1.5rem;
   @include pad {
     margin-right: 0;
   }
@@ -80,5 +87,10 @@ const scrollTop = () => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+.page_privacy_root {
+  position: relative;
+  z-index: 1090;
+  pointer-events: auto;
 }
 </style>

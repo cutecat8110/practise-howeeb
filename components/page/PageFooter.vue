@@ -51,8 +51,8 @@ const infos = ref([
 ])
 const links = ref([
   { name: '關於我們', path: '/about' },
-  { name: '創業相關', path: '/start-up' },
-  { name: '借址登記', path: '/register' }
+  { name: '創業相關', path: '/category/start-up' },
+  { name: '借址登記', path: '/category/register' }
 ])
 </script>
 

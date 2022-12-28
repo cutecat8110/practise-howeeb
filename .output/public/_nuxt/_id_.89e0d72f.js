@@ -1,0 +1,1 @@
+import{x as s,o as a,l as o,t as r,u as n}from"./entry.d5061304.js";const _={__name:"[id]",setup(c){const t=s(),{id:e}=t.params;return(u,l)=>(a(),o("div",null,"\u9019\u88E1\u662F"+r(n(e)),1))}};export{_ as default};

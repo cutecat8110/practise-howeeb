@@ -35,7 +35,9 @@ export default () => {
       'email',
       'instagram',
       'facebook',
-      'phone'
+      'phone',
+      'error',
+      'privacy'
     ]),
     // ...png([
     //   'logo',

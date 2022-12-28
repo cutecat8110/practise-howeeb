@@ -1,1 +1,0 @@
-import{s,o as a,l as o,t as n,u as r}from"./entry.24cd6c81.js";const _={__name:"start-up",setup(u){const t=s(),{name:e}=t;return(c,l)=>(a(),o("div",null,"\u9019\u88E1\u662F"+n(r(e)),1))}};export{_ as default};

@@ -1,7 +1,7 @@
 <template>
   <div v-if="finishRender" class="banner_root">
     <div class="container-xl">
-      <!-- <swiper
+      <swiper
         :loop="true"
         :autoplay="autoplay"
         :spaceBetween="30"
@@ -21,7 +21,7 @@
         <button type="button" class="c_btn next">
           <Icon name="fa6-solid:chevron-right"></Icon>
         </button>
-      </swiper> -->
+      </swiper>
     </div>
   </div>
 </template>
@@ -43,21 +43,12 @@ const autoplay = {
   disableOnInteraction: false
 }
 
-// const {
-//   data: bannerData,
-//   pending,
-//   error,
-//   refresh
-// } = await useFetch('https://picsum.photos/v2/list?page=3&limit=5')
-
-// const res = await $fetch('https://farm.yinunite.com/api/banner/list', {
-//   method: 'POST',
-//   mode: 'no-cors',
-//   redirect: 'follow',
-//   referrer: 'no-referrer'
-// }).catch((error) => {
-//   console.log('error', error)
-// })
+const {
+  data: bannerData,
+  pending,
+  error,
+  refresh
+} = await useFetch('https://picsum.photos/v2/list?page=3&limit=5')
 
 // const {
 //   data: bannerData,
@@ -66,11 +57,14 @@ const autoplay = {
 //   refresh
 // } = await useFetch('https://farm.yinunite.com/api/banner/list', {
 //   method: 'POST',
-//   mode: 'no-cors'
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
 // })
-
-console.log('data', bannerData)
-console.log('error', error)
+// if(pending){
+//   console.log('data', bannerData)
+// }
+// console.log('error', error)
 
 const finishRender = ref(false)
 onMounted(() => {

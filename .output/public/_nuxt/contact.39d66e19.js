@@ -1,0 +1,1 @@
+import{x as o,o as a,l as n,t as s,u as c}from"./entry.d5061304.js";const p={__name:"contact",setup(r){const t=o(),{name:e}=t;return(u,l)=>(a(),n("div",null,"\u9019\u88E1\u662F"+s(c(e)),1))}};export{p as default};

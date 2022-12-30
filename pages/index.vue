@@ -22,28 +22,28 @@ definePageMeta({
 })
 const categories = [
   {
-    article_category_id: 10,
+    article_category_id: 1,
     article_category_name: '最新消息'
   },
   {
-    article_category_id: 20,
+    article_category_id: 2,
     article_category_name: '創業相關'
   },
   {
-    article_category_id: 30,
+    article_category_id: 3,
     article_category_name: '借址登記'
   },
   {
-    article_category_id: 40,
+    article_category_id: 4,
     article_category_name: '共享空間'
   },
   {
-    article_category_id: 50,
+    article_category_id: 5,
     article_category_name: '工商登記'
   }
 ]
 const categoryLast = {
-  article_category_id: 60,
+  article_category_id: 6,
   article_category_name: '其他項目'
 }
 </script>

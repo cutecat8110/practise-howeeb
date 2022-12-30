@@ -1,5 +1,5 @@
 <template>
-  <div class="card_list_root">
+  <div v-if="!pending" class="card_list_root">
     <div class="row g-0">
       <div class="col-4"></div>
       <div class="col-4 text-center">
@@ -9,29 +9,29 @@
     </div>
     <div class="list_wrapper">
       <NuxtLink
-        :to="`/stories/${categoryId}-${index}`"
+        :to="`/stories/${card.article_id}`"
         class="card_wrapper c_btn"
-        v-for="(card, index) in CardData"
-        :key="index"
+        v-for="(card, index) in CardData.ret.data"
+        :key="card.article_id"
       >
         <div class="d-flex flex-column">
           <div class="title">
-            匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿
+            {{ card.article_title }}
           </div>
           <div v-if="rwd" class="summary">
-            匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿匂丼辻込凧杣枠畑栃栂峠俣籾畠雫笹塀椙硲蛯喰搾榊働糀鞆槇樫鴫噺簗麿
+            {{ card.article_summary }}
           </div>
           <div class="info_wrapper d-flex align-items-center justify-content-between mt-auto">
-            <div class="time">1945-8-6</div>
+            <div class="time">{{ $formatDate(card.article_begin_at) }}</div>
             <div class="read d-flex align-items-center">
               <Icon name="mdi:eye" class="me-1"></Icon>
-              235
+              {{ card.article_scan_count }}
             </div>
           </div>
         </div>
         <div class="img_wrapper">
           <div class="cover"></div>
-          <img :src="card.download_url" alt="" />
+          <img :src="`https://farm.yinunite.com/${card.image}`" alt="" />
         </div>
       </NuxtLink>
     </div>
@@ -50,7 +50,11 @@ const {
   pending,
   error,
   refresh
-} = await useFetch(`https://picsum.photos/v2/list?page=${props.categoryId}&limit=8`)
+} = await useFetch('https://farm.yinunite.com/api/article/list', {
+  method: 'POST',
+  server: false,
+  params: { article_category_id: props.categoryId }
+})
 
 /* RWD */
 const rwd = ref(true)
@@ -72,6 +76,8 @@ const finishRender = ref(false)
 onMounted(() => {
   finishRender.value = true
 })
+
+const { $formatDate } = useNuxtApp()
 </script>
 
 <style lang="scss" scoped>
@@ -188,6 +194,4 @@ h2 {
 .info_wrapper {
   color: $gray-2;
 }
-
-
 </style>

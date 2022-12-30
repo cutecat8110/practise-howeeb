@@ -1,5 +1,5 @@
 <template>
-  <div v-if="finishRender" class="banner_root">
+  <div v-if="!pending" class="banner_root">
     <div class="container-xl">
       <swiper
         :loop="true"
@@ -11,9 +11,9 @@
         :modules="modules"
         class="mySwiper"
       >
-        <swiper-slide v-for="banner in bannerData" :key="banner.id">
-          <img :src="banner.download_url" alt="" />
-          <h1 class="slogan">{{ `小男孩x不給糖就搗蛋 TωT` }}</h1>
+        <swiper-slide v-for="banner in data.ret.list" :key="banner.banner_id">
+          <img :src="`https://farm.yinunite.com/${banner.banner_web_image}`" alt="" />
+          <h1 class="slogan">{{ banner.banner_title }}</h1>
         </swiper-slide>
         <button type="button" class="c_btn prev">
           <Icon name="fa6-solid:chevron-left"></Icon>
@@ -43,33 +43,13 @@ const autoplay = {
   disableOnInteraction: false
 }
 
-const {
-  data: bannerData,
-  pending,
-  error,
-  refresh
-} = await useFetch('https://picsum.photos/v2/list?page=3&limit=5')
-
-// const {
-//   data: bannerData,
-//   pending,
-//   error,
-//   refresh
-// } = await useFetch('https://farm.yinunite.com/api/banner/list', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   },
-// })
-// if(pending){
-//   console.log('data', bannerData)
-// }
-// console.log('error', error)
-
-const finishRender = ref(false)
-onMounted(() => {
-  finishRender.value = true
-})
+const { data, pending, error, refresh } = await useFetch(
+  'https://farm.yinunite.com/api/banner/list',
+  {
+    method: 'POST',
+    server: false
+  }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -130,6 +110,11 @@ onMounted(() => {
   font-size: 1.5rem;
   color: $gray-1;
   transform: translateY(-50%);
+  @include pad {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
   @include mobile {
     display: none;
   }

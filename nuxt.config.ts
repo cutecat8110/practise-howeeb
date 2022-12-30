@@ -7,7 +7,7 @@ export default defineNuxtConfig({
           additionalData: `@import "assets/scss/custom/_variables.scss";`
         }
       }
-    }
+    },
   },
   modules: ['nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
   plugins: [
@@ -31,6 +31,10 @@ export default defineNuxtConfig({
       src: '@/plugins/dayjs.js',
       ssr: false
     },
+    {
+      src: '@/plugins/veevalidate.js',
+      ssr: false
+    }
   ],
   css: ['~/assets/scss/main.scss']
 })

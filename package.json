@@ -27,9 +27,12 @@
     "sass-loader": "^13.2.0"
   },
   "dependencies": {
+    "@vee-validate/i18n": "^4.7.3",
+    "@vee-validate/rules": "^4.7.3",
     "bootstrap": "^5.2.3",
     "dayjs": "^1.11.7",
     "swiper": "^8.4.5",
+    "vee-validate": "^4.7.3",
     "vue-loading-overlay": "^6.0.2"
   }
 }

@@ -8,6 +8,7 @@
           class="c_btn nav"
           @click="scroll(privacy.id)"
           :id="`${privacy.id}Point`"
+          :class="privacy.selected"
         >
           {{ privacy.title }}
         </li>
@@ -17,11 +18,12 @@
       <div ref="privacyContent" class="privacy_content">
         <section>
           <h1>
-            <img :src="assets.privacy" alt="privacy" />
+            <img :src="assets.privacy" alt="privacy" class="privacy" />
             隱私權政策
           </h1>
           <p>
-            非常歡迎您光臨「https://.xxxxxxxxxx.com」（以下簡稱本網站），為了讓您能夠安心的使用本網站的各項服務與資訊，特此向您說明本網站的隱私權保護政策，以保障您的權益，請您詳閱下列內容：
+            非常歡迎您光臨「<span class="text_yellow">https://.xxxxxxxxxx.com</span
+            >」（以下簡稱本網站），為了讓您能夠安心的使用本網站的各項服務與資訊，特此向您說明本網站的隱私權保護政策，以保障您的權益，請您詳閱下列內容：
           </p>
         </section>
 
@@ -129,41 +131,32 @@
 const assets = useAssets()
 
 const nav = ref([
-  { id: 'scopeOf', title: '隱私權保護政策的適用範圍' },
-  { id: 'way', title: '個人資料的蒐集處理及利用方式' },
-  { id: 'protection', title: '資料之保護' },
-  { id: 'link', title: '網站對外的相關連結' },
-  { id: 'thirdPerson', title: '與第三人共用個人資料之政策' },
-  { id: 'cookie', title: 'Cookie 之使用' },
-  { id: 'correction', title: '隱私權保護政策之修正' },
-  { id: 'pipe', title: '聯繫管道' }
+  { id: 'scopeOf', title: '隱私權保護政策的適用範圍', selected: '' },
+  { id: 'way', title: '個人資料的蒐集處理及利用方式', selected: '' },
+  { id: 'protection', title: '資料之保護', selected: '' },
+  { id: 'link', title: '網站對外的相關連結', selected: '' },
+  { id: 'thirdPerson', title: '與第三人共用個人資料之政策', selected: '' },
+  { id: 'cookie', title: 'Cookie 之使用', selected: '' },
+  { id: 'correction', title: '隱私權保護政策之修正', selected: '' },
+  { id: 'pipe', title: '聯繫管道', selected: '' }
 ])
 
 const navContent = ref(null)
 const privacyContent = ref(null)
 
 const onScroll = () => {
-  if (navContent.value.offsetTop - scrollY < 96) {
-    navContent.value.style = 'position: fixed;top: 96px;'
+  if (navContent.value.offsetTop - scrollY < innerHeight / 5) {
+    navContent.value.style = `position: fixed;top: ${innerHeight / 5}px;`
   }
-  if (privacyContent.value.offsetTop - scrollY > 96) {
+  if (privacyContent.value.offsetTop - scrollY > innerHeight / 5) {
     navContent.value.style = ''
   }
 
-  const list = nav.value.map((e) => {
-    return {
-      id: document.getElementById(`${e.id}Point`),
-      top: document.getElementById(e.id).offsetTop
-    }
-  })
-  console.log(scrollY)
-  for (let index = 0; index < list.length; index++) {
-    if (list[index].top > scrollY) {
-      if (document.querySelector('.selectedPoint')) {
-        document.querySelector('.selectedPoint').classList.remove('selectedPoint')
-      }
-      console.log(list[index].id)
-      list[index].id.classList.add('selectedPoint')
+  for (let index = 0; index < nav.value.length; index++) {
+    const top = document.getElementById(nav.value[index].id).offsetTop
+    if (top > scrollY) {
+      nav.value.forEach((e) => (e.selected = ''))
+      nav.value[index].selected = 'selected'
       break
     }
   }
@@ -188,14 +181,42 @@ const scroll = (id) => {
 .privacy_root {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  gap: 3.375rem;
+  @include pad {
+    grid-template-columns: 1fr;
+  }
+}
+
+nav {
+  @include pad {
+    display: none;
+  }
 }
 
 .nav_content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  @include pad {
+    display: none;
+  }
   li {
+    padding-left: 1rem;
     color: $gray-2;
+    &.selected {
+      position: relative;
+      font-weight: 600;
+      color: $gray-1;
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: $gray-2;
+        content: '';
+      }
+    }
   }
 }
 
@@ -208,17 +229,65 @@ const scroll = (id) => {
   flex-direction: column;
   gap: 3rem;
   margin-bottom: 4.5rem;
+  @include mobile {
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
 }
 
 h1,
 h2 {
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   font-size: 1.75rem;
+  @include mobile {
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 1.25rem;
+    @include mobile {
+      gap: 0.5rem;
+    }
+  }
+  ul,
+  li {
+    list-style-type: disc;
+  }
+  p,
+  li {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    @include mobile {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.text_yellow {
+  color: $yellow-1;
+}
+
+.privacy {
+  width: 1rem;
 }
 
 .mark_wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  @include mobile {
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
 }
 </style>
